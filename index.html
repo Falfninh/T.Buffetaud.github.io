@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terence Buffetaud - Portefolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+
+    header {
+      background: #111;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+      color: #00ffe1;
+    }
+
+    nav a {
+      color: #f0f0f0;
+      margin-left: 1.5em;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #00ffe1;
+    }
+
+    /* Pour cacher le menu sur les petits écrans */
+.navbar {
+    display: flex; /* Affiche les liens en ligne sur les écrans larges */
+    gap: 1.5em;
+}
+
+.burger {
+    display: none; /* Cacher le burger sur les écrans larges */
+    cursor: pointer;
+    font-size: 2em;
+    background: none;
+    border: none;
+    color: #00ffe1;
+}
+
+/* Responsivité : masquer le menu de navigation sur petits écrans */
+@media (max-width: 768px) {
+    .navbar {
+        display: none; /* Cacher le menu de navigation sur petits écrans */
+        flex-direction: column; /* Les liens seront empilés */
+        gap: 1em;
+        width: 100%;
+        text-align: center;
+        background: #111;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        padding: 1em 0;
+        z-index: 1;
+    }
+
+    .burger {
+        display: block; /* Afficher le burger sur petits écrans */
+    }
+
+    .navbar.active {
+        display: block; /* Afficher le menu lorsque la classe 'active' est ajoutée */
+    }
+
+    /* Optionnel : style pour le burger quand il est ouvert */
+    .burger.open {
+        color: #ff5733;
+    }
+}
+
+    section {
+      padding: 4em 2em;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #00ffe1;
+      margin-bottom: 0.5em;
+    }
+
+    .project, .skill {
+      background: #2a2a2a;
+      border-radius: 10px;
+      padding: 1em;
+      margin-bottom: 1em;
+      box-shadow: 0 2px 10px rgba(0, 255, 225, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .project a.project-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    .project a.project-link:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    .project:hover, .skill:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 255, 225, 0.3);
+    }
+    
+    .project a.project-link h3,
+    .project a.project-link p {
+      margin: 0;
+    }
+
+    #socials {
+  padding: 4em 2em;
+  background: linear-gradient(135deg, #121212, #1a1a1a);
+  border-top: 2px solid #00ffe1;
+  border-bottom: 2px solid #00ffe1;
+  text-align: center;
+  }
+
+  #socials h2 {
+    color: #00ffe1;
+    margin-bottom: 1em;
+    font-size: 2em;
+  }
+
+  #socials .project {
+    background: #242424;
+    padding: 1.5em;
+    margin: 1em auto;
+    max-width: 600px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 255, 225, 0.1);
+  }
+
+  #socials .project:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(0, 255, 225, 0.2);
+  }
+
+  #socials .project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .social-content {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    text-align: left;
+  }
+
+  .social-content .icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  #socials h3 {
+    margin: 0;
+    font-size: 1.3em;
+    color: #00ffe1;
+  }
+
+  #socials p {
+    margin-top: 0.3em;
+    color: #ccc;
+  }
+
+
+    form input, form textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 1em;
+      padding: 0.5em;
+      border-radius: 5px;
+      border: none;
+      background: #333;
+      color: #fff;
+    }
+
+    form button {
+      background: #00ffe1;
+      color: #000;
+      border: none;
+      padding: 0.7em 1.5em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #00bfa5;
+    }
+
+    #confirmation {
+      background: #00ffe1;
+      color: #000;
+      padding: 1em;
+      text-align: center;
+      border-radius: 10px;
+      display: none;
+      margin-top: 2em;
+      font-weight: bold;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    #loader {
+      display: none;
+      text-align: center;
+      color: #00ffe1;
+      font-weight: bold;
+    }
+
+    .hidden-honeypot {
+      display: none;
+    }
+
+    #captchaTimer {
+      font-size: 1.2em;
+      color: red;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Terence Buffetaud</h1>
+    <nav class="navbar">
+      <a href="#about">À propos</a>
+      <a href="#projects">Projets</a>
+      <a href="#skills">Compétences</a>
+      <a href="#socials">Réseaux</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="burger">&#9776;</div>
+  </header>
+
+  <section id="about">
+    <h2>À propos</h2>
+    <p>Je suis développeur web, créateur de contenus et créateur de jeux vidéo, passionné par l'innovation numérique et la création interactive. En plus de mon travail dans le développement et la création, je me consacre également au Vtubing et à l'écriture de romans et de nouvelles, qui font partie de ma série ou saga littéraire.</p>
+  <p>Mes romans et nouvelles sont publiés en autoédition sur Amazon KDP, et je partage les premiers jets de mes écrits sur Wattpad, où vous pouvez suivre l'évolution de mes histoires.</p>
+  <p>Sur ma chaîne YouTube, je partage mes projets vidéos, et sur mon Twitch, vous pourrez me suivre en tant que Vtuber en direct. Si vous aimez la lecture, vous pourrez découvrir mes créations littéraires au sein de ma série ou saga.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projets</h2>
+    <div class="project">
+      <h3><a href="/en-construction.html" target="_blank" class="project-link">Jeu Dark Souls-like (Roblox) (En Construction)</a></h3>
+      <p>Un jeu avec un système de combat avancé et des feux de camp comme points de sauvegarde.</p>
+    </div>
+    <div class="project">
+      <h3><a href="/Projets/TECHCARE/index.html" target="_blank" class="project-link">TECHCARE</h3>
+      <p>Site web responsive avec formulaire de contact Discord intégré.</p>
+      </a>
+    </div>
+    <div class="project">
+      <h3><a href="https://www.youtube.com/@Terentio_Capici" target="_blank" class="project-link">Terentio Capici</h3>
+      <p>Ma chaîne youtube pour avoir accès à mes projets vidéos.</p>
+      </a>
+    </div>
+    <div class="project">
+      <h3><a href="en-construction.html" target="_blank" class="project-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M6 4v16h12V4H6zm10 14H8V6h8v12z" fill="#FF9900"/>
+          <path d="M0 2v20h24V2H0zm22 18H2V4h20v16z" fill="none"/>
+        </svg>
+        Romans et nouvelles sur Amazon KDP (En construction)</a></h3>
+      <p>Mes romans et nouvelles publiés en autoédition sur Amazon KDP. Découvrez mon univers littéraire en cliquant ici.</p>
+    </div>
+    <div class="project">
+      <h3><a href="https://www.wattpad.com/user/TerentioCapici" target="_blank" class="project-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M3 6v12h18V6H3zm16 10H5V8h14v8z" fill="#FF6A00"/>
+          <path d="M0 2v20h24V2H0zm22 18H2V4h20v16z" fill="none"/>
+        </svg>
+        Mes premiers jets sur Wattpad</a></h3>
+      <p>Les premiers jets de mes écrits disponibles sur Wattpad. Suivez l'évolution de mes histoires au fur et à mesure de leur création.</p>
+    </div>
+    <div class="project">
+      <h3><a href="https://www.twitch.tv/terentiocapici" target="_blank" class="project-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M21 3H3c-1.1 0-1.99.9-1.99 2L1 19c0 1.1.9 2 2 2h4v2l4-2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 14H7v-2l3-2h6v2zm0-4H7V5h12v8z" fill="#9146FF"/>
+        </svg>
+        Vtubing sur Twitch</a></h3>
+      <p>Suivez-moi en tant que Vtuber en direct sur Twitch et rejoignez la communauté !</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Compétences</h2>
+    <div class="skill">Développement web (HTML, CSS, JavaScript)</div>
+    <div class="skill">Création de jeux (RPG Maker MV, Roblox Studio)</div>
+    <div class="skill">Création de contenus (YouTube, Gacha Life)</div>
+  </section>
+
+  <section id="socials">
+    <h2>Réseaux sociaux</h2>
+  
+    <div class="project">
+      <a href="https://www.youtube.com/@Terentio_Capici" target="_blank" class="project-link">
+        <div class="social-content">
+          <svg class="icon" viewBox="0 0 24 24" fill="#FF0000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.498 6.186c-.278-1.04-1.096-1.86-2.14-2.137C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.358.548C1.6 4.326.782 5.146.504 6.186.002 8.15 0 12 0 12s.002 3.85.504 5.814c.278 1.04 1.096 1.86 2.138 2.137C4.6 20.5 12 20.5 12 20.5s7.4 0 9.358-.548c1.044-.278 1.862-1.096 2.14-2.138.502-1.964.502-5.814.502-5.814s0-3.85-.502-5.814zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/>
+          </svg>
+          <div>
+            <h3>YouTube</h3>
+            <p>Ma chaîne YouTube où je publie mes projets vidéos et critiques.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  
+    <div class="project">
+      <a href="https://www.linkedin.com/in/terence-buffetaud" target="_blank" class="project-link">
+        <div class="social-content">
+          <svg class="icon" viewBox="0 0 24 24" fill="#0077B5" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.98 3.5C4.98 4.604 4.084 5.5 2.98 5.5S.98 4.604.98 3.5 1.876 1.5 2.98 1.5 4.98 2.396 4.98 3.5zM.98 8.5h4V22.5h-4V8.5zM8.98 8.5h3.82v1.89h.05c.53-1 1.82-2.04 3.75-2.04 4.01 0 4.75 2.63 4.75 6.05V22.5h-4v-5.93c0-1.41-.03-3.22-1.96-3.22-1.96 0-2.26 1.53-2.26 3.12V22.5h-4V8.5z"/>
+          </svg>
+          <div>
+            <h3>LinkedIn</h3>
+            <p>Mon profil professionnel avec mon parcours et mes expériences.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="project">
+      <a href="https://discord.gg/HzuarUwtvw" target="_blank" class="project-link">
+        <div class="social-content">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16">
+            <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
+          </svg>
+          <div>
+            <h3>Serveur Discord</h3>
+            <p>Le serveur Discord pour entrer plus facilement en contact avec moi.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form id="contactForm">
+      <input type="text" placeholder="Nom" required />
+      <input type="email" placeholder="Email" required />
+      <input type="text" placeholder="Identifiant Discord (facultatif)" id="discord" />
+      <textarea rows="5" placeholder="Votre message..." required></textarea>
+      <label id="captchaLabel"></label>
+      <input type="text" id="captcha" placeholder="Répondez au CAPTCHA ci-dessus" required />
+      <div class="hidden-honeypot">
+        <input type="text" id="honeypot" autocomplete="off" />
+      </div>
+      <button type="submit">Envoyer</button>
+    </form>
+    <div id="loader">⏳ Envoi en cours...</div>
+    <div id="confirmation">✅ Message envoyé avec succès !</div>
+    <div id="captchaTimer" style="display: none;">Patientez <span id="timeLeft"></span> secondes avant de réessayer.</div>
+    <audio id="successSound" src="https://www.myinstants.com/media/sounds/success-fanfare-trumpets.mp3"></audio>
+  </section>
+
+  <script>
+    const burger = document.querySelector('.burger');
+    const navbar = document.querySelector('.navbar');
+    const menuLinks = document.querySelectorAll('.navbar a');
+
+    // Ouvrir/fermer le menu au clic sur le burger
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navbar.classList.toggle('active');
+    });
+
+    // Fermer le menu au clic sur un lien
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {  // Seulement pour les mobiles
+          burger.classList.remove('open');
+          navbar.classList.remove('active');
+        }
+      });
+    });
+
+    let tentatives = 0;
+    let blocage = false;
+    let captchaRéponse = '';
+    let timer;
+
+    const confirmation = document.getElementById('confirmation');
+    const loader = document.getElementById('loader');
+    const successSound = document.getElementById('successSound');
+    const captchaTimer = document.getElementById('captchaTimer');
+    const timeLeft = document.getElementById('timeLeft');
+
+    const generateCaptcha = () => {
+      const type = Math.random() > 0.5 ? 'math' : 'text';
+      if (type === 'math') {
+        const a = Math.floor(Math.random() * 10) + 1;
+        const b = Math.floor(Math.random() * 10) + 1;
+        captchaRéponse = (a + b).toString();
+        document.getElementById('captchaLabel').textContent = `Combien font ${a} + ${b} ?`;
+      } else {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+        captchaRéponse = Array.from({length: 5}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+        document.getElementById('captchaLabel').textContent = `Recopiez : ${captchaRéponse}`;
+      }
+    };
+
+    generateCaptcha();
+
+    const startCooldown = (seconds) => {
+      captchaTimer.style.display = 'block';
+      let countdown = seconds;
+      timeLeft.textContent = countdown;
+
+      timer = setInterval(() => {
+        countdown--;
+        timeLeft.textContent = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          captchaTimer.style.display = 'none';
+          blocage = false;
+          tentatives = 0;
+          generateCaptcha();
+        }
+      }, 1000);
+    };
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (blocage) {
+        alert("Trop de tentatives. Veuillez réessayer plus tard.");
+        return;
+      }
+
+      if (document.getElementById('honeypot').value !== '') return; // anti-bot
+
+      const nom = this.querySelector('input[type="text"]').value;
+      const email = this.querySelector('input[type="email"]').value;
+      const discord = this.querySelector('#discord').value;
+      const message = this.querySelector('textarea').value;
+      const captcha = this.querySelector('#captcha').value;
+
+      if (captcha.trim() !== captchaRéponse) {
+        tentatives++;
+        if (tentatives >= 3) {
+          blocage = true;
+          alert("CAPTCHA incorrect 3 fois. Veuillez patienter 30 secondes.");
+          startCooldown(30); // Commence un compte à rebours de 30 secondes
+        } else {
+          const attente = tentatives * 10;
+          alert(`CAPTCHA incorrect. Attendez ${attente} secondes.`);
+          blocage = true;
+          startCooldown(attente);
+        }
+        return;
+      }
+
+      loader.style.display = 'block';
+
+      const webhookURL = "https://discord.com/api/webhooks/1364145464059887666/l0ZrfPopV2looh83n4vfxJMh0a-NZvd0anwbawXJzN7yODuDEmaAAtama_tIAqFE2czn";
+
+      const payload = {
+        username: "PortfolioBot",
+        avatar_url: "https://i.imgur.com/your-avatar.png",
+        embeds: [{
+          title: "📩 Nouveau message depuis le portfolio",
+          color: 0x00ffe1,
+          fields: [
+            { name: "👤 Nom", value: `\`${nom || "Non précisé"}\``, inline: true },
+            { name: "✉️ Email", value: `[${email}](mailto:${email})`, inline: true },
+            { name: "💬 Message", value: message || "Vide" },
+            { name: "🔗 Discord", value: discord || "Non fourni" }
+          ],
+          footer: {
+            text: "Portfolio • Envoi automatique",
+            icon_url: "https://i.imgur.com/your-footer-icon.png"
+          },
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(() => {
+        loader.style.display = 'none';
+        confirmation.style.display = 'block';
+        successSound.play();
+        setTimeout(() => confirmation.style.display = 'none', 6000);
+        
+        // Rediriger vers la page de remerciement après 2 secondes
+        setTimeout(() => {
+          window.location.href = "/remerciement.html";
+        }, 2000);
+
+        tentatives = 0;
+        this.reset();
+        generateCaptcha();
+      }).catch((err) => {
+        loader.style.display = 'none';
+        alert("Une erreur est survenue. Essayez plus tard.");
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>

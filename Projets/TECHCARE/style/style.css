@@ -1,22 +1,22 @@
 /*font - Quantico */
 @font-face{
     font-family: Quantico-Regular;
-    src: url(./Projets/TECHCARE/style/font/Quantico/Quantico-Regular.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Quantico/Quantico-Regular.ttf);
 }
 
 @font-face{
     font-family: Quantico-Bold;
-    src: url(./Projets/TECHCARE/style/font/Quantico/Quantico-Bold.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Quantico/Quantico-Bold.ttf);
 }
 
 @font-face{
     font-family: Quantico-Italic;
-    src: url(./Projets/TECHCARE/style/font/Quantico/Quantico-Italic.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Quantico/Quantico-Italic.ttf);
 }
 
 @font-face{
     font-family: Quantico-BoldItalic;
-    src: url(./Projets/TECHCARE/style/font/Quantico/Quantico-BoldItalic.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Quantico/Quantico-BoldItalic.ttf);
 }
 
 
@@ -24,44 +24,44 @@
 
 @font-face{
     font-family: Saira-Regular;
-    src: url(./Projets/TECHCARE/style/font/Saira/Saira-Regular.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Saira/Saira-Regular.ttf);
 }
 
 @font-face{
     font-family: Saira-Bold;
-    src: url(./Projets/TECHCARE/style/font/Saira/Saira-Bold.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Saira/Saira-Bold.ttf);
 }
 
 @font-face{
     font-family: Saira-Italic;
-    src: url(./Projets/TECHCARE/style/font/Saira/Saira-Italic.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Saira/Saira-Italic.ttf);
 }
 
 @font-face{
     font-family: Saira-BoldItalic;
-    src: url(./Projets/TECHCARE/style/font/Saira/Saira-BoldItalic.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Saira/Saira-BoldItalic.ttf);
 }
 
 /*font - Roboto*/
 
 @font-face{
     font-family: Roboto-Regular;
-    src: url(./Projets/TECHCARE/style/font/Saira/Saira-Regular.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Saira/Saira-Regular.ttf);
 }
 
 @font-face{
     font-family: Roboto-Bold;
-    src: url(./Projets/TECHCARE/Projets/TECHCARE/style/font/Saira/Saira-Bold.ttf);
+    src: url(../../Projets/TECHCARE/Projets/TECHCARE/style/font/Saira/Saira-Bold.ttf);
 }
 
 @font-face{
     font-family: Roboto-Italic;
-    src: url(./Projets/TECHCARE/style/font/Saira/Saira-Italic.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Saira/Saira-Italic.ttf);
 }
 
 @font-face{
     font-family: Roboto-BoldItalic;
-    src: url(./Projets/TECHCARE/style/font/Saira/Saira-BoldItalic.ttf);
+    src: url(../../Projets/TECHCARE/style/font/Saira/Saira-BoldItalic.ttf);
 }
 
 

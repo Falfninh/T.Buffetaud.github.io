@@ -2,9 +2,9 @@
 function updateImage() {
     const imgPG = document.querySelector(".img-pg");
     if (window.innerWidth <= 768) {
-      imgPG.src = "./Projets/Site TECHCARE/style/img/Témoignage - none.png";
+      imgPG.src = "../../Projets/Site TECHCARE/style/img/Témoignage - none.png";
     } else {
-      imgPG.src = "./Projets/Site TECHCARE/style/img/Témoignage - PG.png";
+      imgPG.src = "../../Projets/Site TECHCARE/style/img/Témoignage - PG.png";
     }
   }
 

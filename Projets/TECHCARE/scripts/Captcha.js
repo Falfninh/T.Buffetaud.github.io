@@ -106,7 +106,7 @@
             return;
           }
         
-          const webhookURL = "https://discord.com/api/webhooks/1360235322834813028/Y-mmoeqbmvzd-MqS6z6IkkIc3nAdZ2SWD2uCdtjDoCWBMIsI9LY0y3yEhJEQOeembaqh";
+          const webhookURL = "https://shrill-fire-0d08.t3rfr3e.workers.dev/";
         
           const payload = {
             embeds: [
